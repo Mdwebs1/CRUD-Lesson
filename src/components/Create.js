@@ -8,15 +8,19 @@ function Create() {
     const [lastName, setLastName] = useState('');
     const [checkbox, setCheckbox] = useState(false);
 
-     const postData  = () => {
-        axios.post(`https://62ca93dc3e924a01285b6d92.mockapi.io/fakeData`, {
+
+
+
+     const postData  = async () => {
+    
+       await axios.post(`https://62ca93dc3e924a01285b6d92.mockapi.io/fakeData`, {
             firstName,
             lastName,
             checkbox
            
           }).then(() => {
             navigate('/read')    
-              })
+              }).catch(err => console.log(err));
     
     }
   return (

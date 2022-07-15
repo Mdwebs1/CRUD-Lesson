@@ -18,6 +18,13 @@ export default function Read() {
       localStorage.setItem('Last Name', lastName);
       localStorage.setItem('Checkbox Value', checkbox)
    }
+   const postData = (data)=>{
+    let { id, firstName, lastName, checkbox } = data;
+    localStorage.setItem('ID', id);
+    localStorage.setItem('First Name', firstName);
+    localStorage.setItem('Last Name', lastName);
+    localStorage.setItem('Checkbox Value', checkbox) 
+   }
    const getData = async () => {
    await axios.get(`https://62ca93dc3e924a01285b6d92.mockapi.io/fakeData`)
         .then((getData) => {
@@ -33,6 +40,7 @@ export default function Read() {
     return (
         <div>
         <h1>Hello</h1>
+
         {APIData.map((data , index) => {
           return (
             <table key={index}>
@@ -42,7 +50,8 @@ export default function Read() {
    <th>{data.checkbox ? 'Checked' : 'Unchecked'}</th>
  </tr>
  <Link to='/update'>
-  <button onClick={() => setData(data)}>ubdate</button></Link>
+  <button onClick={() => setData(data)}>ubdate</button>
+  </Link>
  <button onClick={() => onDelete(data.id)}>Delete</button>
 
 
@@ -54,7 +63,7 @@ export default function Read() {
             </table>
           )
         })}
-            
+ 
         </div>
     )
 }
